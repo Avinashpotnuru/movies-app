@@ -1,16 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
-
-import { useGetMoviesQuery } from "@/store/api/restApis";
-import { ProgressBar } from "react-loader-spinner";
-import MoviesCard from "../MoviesCard";
-import Pagination from "../Pagination";
-
+//next imports
 import { usePathname } from "next/navigation";
 
+//react imports
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import tabsSlice from "@/store/slice/tabsSlice";
+
+import { ProgressBar } from "react-loader-spinner";
+
+import { useGetMoviesQuery } from "@/store/api/restApis";
+
+//import components
+
+import MoviesCard from "../MoviesCard";
+import Pagination from "../Pagination";
 
 const Movies = () => {
   const path = usePathname();
@@ -47,8 +51,6 @@ const Movies = () => {
   const delFav = (e) => {
     const delMovie = favorite.filter((item) => item.id !== e);
     saveToLocalStorage(delMovie);
-    // const res=localStorage.getItem("")
-    // setFavorite()
   };
 
   return (

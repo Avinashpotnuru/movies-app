@@ -1,7 +1,6 @@
+//next imports
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-
 const SearchTabComponent = ({ title, poster_path, id, tabHandler }) => {
   const imagePath =
     "https://image.tmdb.org/t/p/w500/https://image.tmdb.org/t/p/w500";

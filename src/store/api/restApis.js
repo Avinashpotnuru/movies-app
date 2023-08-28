@@ -1,5 +1,6 @@
+//redux imports
+
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { data } from "autoprefixer";
 
 const baseUrl = process.env.NEXT_PUBLIC_BACKEND_BASEURL;
 const API_KEY =
@@ -11,9 +12,6 @@ const restApi = createApi({
     baseUrl: baseUrl,
 
     prepareHeaders: (headers) => {
-      //   accept: 'application/json',
-      // 'content-type': 'application/json',
-
       headers.set("authorization", `Bearer ${API_KEY}`);
 
       return headers;
@@ -32,7 +30,6 @@ const restApi = createApi({
     getMovies: builder.query({
       query: (data) => `movie/${data.tab}?page=${data.pageId}`,
     }),
-
     getMovieById: builder.query({
       query: (data) => `movie/${data.id}`,
     }),
@@ -60,6 +57,9 @@ const restApi = createApi({
     getPersonImages: builder.query({
       query: (data) => `person/${data.id}/images`,
     }),
+    getHeroMovies: builder.query({
+      query: (data) => `person/${data.id}/combined_credits`,
+    }),
     getFavoriteMovies: builder.query({
       query: (data) => `account/20236627/favorite/movies`,
     }),
@@ -79,6 +79,7 @@ export const {
   useGetPersonImagesQuery,
   useGetMovieImagesQuery,
   useGetFavoriteMoviesQuery,
+  useGetHeroMoviesQuery,
 } = restApi;
 
 export default restApi;

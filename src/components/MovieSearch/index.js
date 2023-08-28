@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
-import { useGetSearchMoviesQuery } from "@/store/api/restApis";
-import { useDispatch, useSelector } from "react-redux";
+
+//import components
+
 import SearchMovieCard from "../SearchMovieCard";
 
 const MoviesSearch = ({ searchRes }) => {

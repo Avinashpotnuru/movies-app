@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+//third party package
 import ReactPlayer from "react-player";
-import YouTube from "react-youtube";
 
 const VideoCard = ({ videos }) => {
   const onPlayerReady = (event) => {
@@ -18,7 +17,7 @@ const VideoCard = ({ videos }) => {
       autoplay: 1,
     },
   };
-  //   console.log(videos);
+
   return (
     <div>
       {videos?.key && (
@@ -29,12 +28,6 @@ const VideoCard = ({ videos }) => {
           playing={false}
           url={`https://youtu.be/${videos?.key}`}
         />
-        // <YouTube
-        //   videoId={`${videos?.key}`}
-        //   opts={opts}
-        //   onReady={onPlayerReady}
-        //   loading={"loading...."}
-        // />
       )}
     </div>
   );

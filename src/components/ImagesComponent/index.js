@@ -1,20 +1,19 @@
 "use client";
 
-import React from "react";
-
+//next imports
 import { useParams } from "next/navigation";
-
-import { useGetMovieImagesQuery } from "@/store/api/restApis";
+import Image from "next/image";
 
 import { imagePath } from "@/utilities";
-import Image from "next/image";
+
+//import from store
+
+import { useGetMovieImagesQuery } from "@/store/api/restApis";
 
 const ImagesComponent = () => {
   const params = useParams();
   const id = params.id;
   const { data } = useGetMovieImagesQuery({ id });
-
-  console.log("data", data);
 
   return (
     <div>

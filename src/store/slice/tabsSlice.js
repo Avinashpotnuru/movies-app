@@ -1,3 +1,4 @@
+//redux imports
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = { tabs: "1", searchResult: "" };

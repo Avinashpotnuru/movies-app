@@ -1,14 +1,19 @@
 "use Client";
-import React, { useState } from "react";
+
+//next imports
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+//react imports
+import React, { useState } from "react";
 import { useGetSearchMoviesQuery } from "@/store/api/restApis";
-import SearchTabComponent from "../SearchTabComponent";
-
 import { useDispatch, useSelector } from "react-redux";
 
 import { searchHandler } from "@/store/slice/tabsSlice";
+
+//import components
+import SearchTabComponent from "../SearchTabComponent";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -35,8 +40,8 @@ const Navbar = () => {
       <div className="space-x-4 flex flex-col sm:flex-row items-center">
         <Link href={"/favorite"}>
           <h1
-            className={`ml-4  ${
-              path === "/favorite" ? "font-bold text-white" : ""
+            className={`ml-4 text-white font-bold ${
+              path === "/favorite" ? "underline pb-3" : ""
             } `}
           >
             Favorite

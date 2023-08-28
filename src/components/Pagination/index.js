@@ -1,6 +1,7 @@
+//react imports
+
 import React, { useState } from "react";
 import { tabsHandler } from "@/store/slice/tabsSlice";
-
 import { useDispatch } from "react-redux";
 
 const Pagination = ({ pages }) => {
@@ -25,8 +26,6 @@ const Pagination = ({ pages }) => {
       break;
     }
   }
-
-  //   console.log()
 
   return (
     <div className="flex flex-col justify-center  overflow-x-auto max-w-full ">

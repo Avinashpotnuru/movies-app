@@ -1,14 +1,15 @@
+//next imports
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-
-import { MdOutlineFavorite } from "react-icons/md";
+import { usePathname } from "next/navigation";
+//react imports
+import { useEffect, useState } from "react";
 
 import { useAddFavoritesMutation } from "@/store/api/restApis";
 
-import { usePathname } from "next/navigation";
-
+//third party packages
 import { RxCross2 } from "react-icons/rx";
+import { MdOutlineFavorite } from "react-icons/md";
 
 function MoviesCard({
   title,
@@ -28,6 +29,7 @@ function MoviesCard({
   const [addFavorite] = useAddFavoritesMutation();
 
   const path = usePathname();
+  useEffect(() => {}, [addFavorite]);
 
   return (
     <div className="bg-white min-h-[540px] shadow-md rounded m-3">

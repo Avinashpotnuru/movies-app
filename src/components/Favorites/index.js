@@ -1,9 +1,14 @@
 "use client";
-
+//hooks
 import React, { useEffect } from "react";
+
+//next imports
+import { usePathname } from "next/navigation";
+
+//import components
 import MoviesCard from "../MoviesCard";
 
-import { usePathname } from "next/navigation";
+//import from store
 import { useGetFavoriteMoviesQuery } from "@/store/api/restApis";
 
 const Favorites = () => {
@@ -11,11 +16,7 @@ const Favorites = () => {
 
   const { data } = useGetFavoriteMoviesQuery();
 
-  // useEffect(() => {}, []);
-
-  const delFav = (e) => {
-    // console.log(e);
-  };
+  const delFav = (e) => {};
 
   return (
     <div>

@@ -1,10 +1,11 @@
+//redux imports
+
 import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 import rootReducer from "./slice/rootReducer";
 
 import restApi from "./api/restApis";
-
-import { setupListeners } from "@reduxjs/toolkit/query";
 
 const middleware = [restApi.middleware];
 

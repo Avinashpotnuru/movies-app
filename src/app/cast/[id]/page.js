@@ -1,5 +1,6 @@
+//import components
+
 import CastDetails from "@/components/CastDetails";
-import React from "react";
 
 const CastPage = () => {
   return (

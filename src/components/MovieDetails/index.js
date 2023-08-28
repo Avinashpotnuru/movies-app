@@ -1,34 +1,31 @@
 "use client";
 
+//next imports
 import Image from "next/image";
-
-import React from "react";
-
 import dynamic from "next/dynamic";
-
-import CastCard from "../CastCard";
-
-import ReactPlayer from "react-player";
-
 import { useParams } from "next/navigation";
 
+//import third party packages
+import ReactPlayer from "react-player";
+
+//imports from store
 import {
   useGetSimilarMoviesQuery,
   useGetMovieVideosQuery,
-  useGetMovieReviewQuery,
   useGetPersonDetailsQuery,
 } from "@/store/api/restApis";
 
-import SimilarMovieCard from "../SimilarMovieCard";
 import Link from "next/link";
+
+//import components
+import CastCard from "../CastCard";
 
 const VideoCard = dynamic(() => import("../VideoCard"), {
   ssr: false,
 });
+import SimilarMovieCard from "../SimilarMovieCard";
 
 const MovieDetails = (props) => {
-  // console.log(props);
-
   const cast = props?.cast;
   const crew = props?.crew;
 
@@ -41,13 +38,9 @@ const MovieDetails = (props) => {
   const params = useParams();
   const id = params.id;
 
-  // console.log(params, "params");
-
   const { data } = useGetSimilarMoviesQuery({ id });
 
   const { data: reviews } = useGetPersonDetailsQuery();
-
-  // console.log("reviews", reviews);
 
   const similarMovies = data?.results;
 
@@ -55,7 +48,6 @@ const MovieDetails = (props) => {
 
   const videos = videosData?.results;
 
-  // console.log("videos", videos);
   const imagePath =
     "https://image.tmdb.org/t/p/w500/https://image.tmdb.org/t/p/w500";
 
@@ -82,10 +74,6 @@ const MovieDetails = (props) => {
             <Image
               height={300}
               width={400}
-              // src={`${imagePath}${
-              //   props.poster_path ? props.poster_path : "/noimage.png"
-              // }`}
-
               src={`${
                 props.poster_path
                   ? `${imagePath}${props.poster_path}`
@@ -132,11 +120,7 @@ const MovieDetails = (props) => {
                 {props?.genres?.map((e) => e.name).join(",")}
               </div>
             </div>
-            {/* <h1 className="text-white   text-base">
-              <span className="  text-base">
-                Genres :{props?.genres?.map((e) => e.name).join(",")}
-              </span>
-            </h1> */}
+
             <div>
               <h1 className="text-white  text-base">
                 <span className=" font-bold text-base">Run time : </span>
@@ -188,20 +172,6 @@ const MovieDetails = (props) => {
           </div>
         </div>
       </div>
-      {/* {videos?.length && (
-        <>
-          <h1 className=" font-bold text-white my-3 text-2xl  text-center">
-            Videos
-          </h1>
-          <div className="flex flex-col  overflow-x-auto w-full p-3">
-            <div className="flex  space-x-4  ">
-              {videos?.slice(0, 10).map((e, idx) => (
-                <VideoCard key={idx} videos={e} />
-              ))}
-            </div>
-          </div>
-        </>
-      )} */}
 
       {videos?.length && (
         <>

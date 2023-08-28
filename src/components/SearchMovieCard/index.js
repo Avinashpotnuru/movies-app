@@ -1,6 +1,7 @@
+//next imports
+
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 const SearchMovieCard = ({
   poster_path,

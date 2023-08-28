@@ -1,18 +1,26 @@
 "use client";
 
-import React from "react";
+//next imports
+import { useParams } from "next/navigation";
+import Image from "next/image";
 
+import { imagePath } from "@/utilities";
+
+//hooks
+import { useState } from "react";
+
+//import third party packages
+import { Puff } from "react-loader-spinner";
+
+//import components
+import SimilarMovieCard from "../SimilarMovieCard";
+
+//import from store
 import {
   useGetPersonDetailsQuery,
   useGetPersonImagesQuery,
+  useGetHeroMoviesQuery,
 } from "@/store/api/restApis";
-
-import { useParams } from "next/navigation";
-
-import { imagePath } from "@/utilities";
-import { useState } from "react";
-import Image from "next/image";
-import { Puff } from "react-loader-spinner";
 
 const CastDetails = () => {
   const params = useParams();
@@ -24,26 +32,30 @@ const CastDetails = () => {
 
   const { data: imagesData } = useGetPersonImagesQuery({ id });
 
+  const { data: heroMovies } = useGetHeroMoviesQuery({ id });
+
   const images = imagesData?.profiles;
 
-  console.log("data", images);
+  console.log("heroMovies", heroMovies?.cast);
 
   return (
-    <div className=" w-full flex-col justify-center items-center mx-auto h-screen md:w-[90%] lg:w-[70%] ">
+    <div className=" flex-col justify-center items-center mx-auto h-screen w-full  ">
       {isLoading ? (
-        <Puff
-          height="80"
-          width="80"
-          radius={1}
-          color="white"
-          ariaLabel="puff-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-        />
+        <div className="flex justify-center items-center h-1/2">
+          <Puff
+            height="80"
+            width="80"
+            radius={1}
+            color="white"
+            ariaLabel="puff-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        </div>
       ) : (
         <>
-          <div className="w-full flex flex-col justify-center items-center md:flex-row md:justify-center md:items-center ">
+          <div className="w-full mx-auto  md:w-[90%] lg:w-[70%] flex flex-col justify-center items-center md:flex-row md:justify-center md:items-center ">
             <div className="md:w-[40%]">
               <Image
                 height={500}
@@ -97,9 +109,26 @@ const CastDetails = () => {
               )}
             </div>
           </div>
+
+          {heroMovies?.cast && (
+            <>
+              <h1 className="text-white text-2xl font-semibold my-3 mx-4">
+                Known For
+              </h1>
+              <div className="flex flex-col  overflow-x-auto w-full p-3">
+                <div className="flex  space-x-4  ">
+                  {heroMovies?.cast.map((e, idx) => (
+                    <SimilarMovieCard key={idx} {...e} />
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
           {images && (
             <>
-              <h1 className="text-white text-2xl">More images</h1>
+              <h1 className="text-white text-2xl font-semibold my-3 mx-4">
+                More images
+              </h1>
               <div className="flex flex-col  overflow-x-auto w-full p-3">
                 <div className="flex  space-x-4  ">
                   {images?.map((e, idx) => (
@@ -107,7 +136,7 @@ const CastDetails = () => {
                       key={idx}
                       height={700}
                       width={700}
-                      className=" h-[220px] w-[180px] "
+                      className=" h-[250px] w-[180px] "
                       src={`${
                         e?.file_path
                           ? `${imagePath}${e?.file_path}`

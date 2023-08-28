@@ -1,11 +1,14 @@
 "use client";
 
-import React from "react";
-import MoviesSearch from "@/components/MovieSearch";
+//next imports
 
 import { useParams } from "next/navigation";
 
 import { useGetSearchMoviesQuery } from "@/store/api/restApis";
+
+//import components
+
+import MoviesSearch from "@/components/MovieSearch";
 
 const SearchMovies = () => {
   const params = useParams();
@@ -14,7 +17,6 @@ const SearchMovies = () => {
 
   const { data } = useGetSearchMoviesQuery({ searchInput });
 
-  // console.log(data);
   const searchRes = data?.results;
 
   return (

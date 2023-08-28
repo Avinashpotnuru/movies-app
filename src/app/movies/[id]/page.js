@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
+//next imports
+
 import dynamic from "next/dynamic";
+import { useParams } from "next/navigation";
 
 import {
   useGetMovieByIdQuery,
@@ -9,8 +11,7 @@ import {
   useGetMovieVideosQuery,
 } from "@/store/api/restApis";
 
-import { useParams, useRouter } from "next/navigation";
-
+//import components
 const MovieDetails = dynamic(() => import("@/components/MovieDetails"), {
   ssr: false,
 });
@@ -21,12 +22,9 @@ const MoviesDetailsPage = () => {
 
   const { data } = useGetMovieByIdQuery({ id });
   const { data: castData } = useGetMovieDetailsCastQuery({ id });
-  const { data: movieVideos, isLoading } = useGetMovieVideosQuery({ id });
-  // console.log("castData", castData);
-  // console.log("movieVideos", movieVideos?.results);
+  const { data: movieVideos } = useGetMovieVideosQuery({ id });
 
   const trailer = movieVideos?.results?.filter((e) => e.type == "Trailer");
-  // console.log(trailer, "trailer");
 
   return (
     <div>
